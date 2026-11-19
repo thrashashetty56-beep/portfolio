@@ -2290,3 +2290,313 @@ h1, h2, h3, h4, h5, h6 {
     display: block;
     margin: 20px auto;
 }
+
+/* ==========================================================
+   FINAL FIXES & RESPONSIVE OVERRIDES
+   THRASHASHETTY.DEV
+   ========================================================== */
+
+/* Global overflow and responsive sizing */
+html {
+  width: 100%;
+  overflow-x: clip;
+  scroll-padding-top: var(--header-height);
+}
+
+body {
+  width: 100%;
+  min-width: 320px;
+  overflow-x: clip;
+}
+
+.container {
+  width: min(100% - 2rem, var(--container-max));
+}
+
+/* Better sticky header */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+/* Ensure mobile drawer appears above page content */
+.mobile-drawer {
+  position: fixed;
+  top: var(--header-height);
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: calc(100dvh - var(--header-height));
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Better image responsiveness */
+.profile-photo {
+  width: 150px;
+  max-width: 100%;
+  height: 200px;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  margin: 20px auto;
+  border-radius: var(--radius-md);
+}
+
+/* Prevent grid overflow */
+.about-grid,
+.contact-grid,
+.vision-split-container,
+.projects-grid,
+.skills-grid {
+  min-width: 0;
+}
+
+.project-card,
+.skill-card,
+.bio-card,
+.education-card {
+  min-width: 0;
+}
+
+/* Responsive project cards */
+.projects-grid {
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(min(100%, 300px), 1fr)
+  );
+}
+
+/* Responsive skill cards */
+.skills-grid {
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(min(100%, 260px), 1fr)
+  );
+}
+
+/* Better form controls */
+.form-input,
+.form-textarea,
+select,
+input,
+textarea {
+  max-width: 100%;
+}
+
+.form-input:focus-visible,
+.form-textarea:focus-visible {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 2px;
+}
+
+/* Improve button interaction */
+.btn,
+.skill-filter-btn,
+.project-filter-pill,
+.social-link-btn {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+/* Prevent long text from breaking layouts */
+.project-description,
+.hero-bio-lead,
+.timeline-bullets li,
+.contact-val {
+  overflow-wrap: anywhere;
+}
+
+/* Better dark theme status colors */
+[data-theme="dark"] .form-feedback.success {
+  background: rgba(16, 185, 129, 0.15);
+  color: #6EE7B7;
+  border-color: rgba(16, 185, 129, 0.35);
+}
+
+[data-theme="dark"] .form-feedback.error {
+  background: rgba(239, 68, 68, 0.15);
+  color: #FCA5A5;
+  border-color: rgba(239, 68, 68, 0.35);
+}
+
+/* Better mobile layout */
+@media (max-width: 768px) {
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .hero-section {
+    padding: 3.5rem 0;
+  }
+
+  .hero-title {
+    font-size: clamp(2rem, 8vw, 2.75rem);
+  }
+
+  .hero-bio-lead {
+    font-size: 1rem;
+  }
+
+  .section-padding {
+    padding: 3.75rem 0;
+  }
+
+  .section-header {
+    margin-bottom: 2.25rem;
+  }
+
+  .skills-integrity-banner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .spoken-langs-list {
+    flex-wrap: wrap;
+  }
+
+  .projects-header-filter {
+    flex-wrap: wrap;
+  }
+
+  .project-card-footer {
+    flex-wrap: wrap;
+  }
+
+  .contact-form-container {
+    padding: 1.5rem;
+  }
+
+  .timeline-container {
+    padding-left: 1.5rem;
+  }
+
+  .timeline-marker {
+    left: -1.5rem;
+  }
+
+  .timeline-container::before {
+    left: 5px;
+  }
+}
+
+/* Small mobile screens */
+@media (max-width: 480px) {
+  .brand-logo {
+    gap: 0.5rem;
+  }
+
+  .brand-name {
+    font-size: 0.9rem;
+  }
+
+  .brand-role {
+    font-size: 0.65rem;
+  }
+
+  .header-actions {
+    gap: 0.4rem;
+  }
+
+  .theme-toggle-btn,
+  .mobile-nav-toggle {
+    width: 38px;
+    height: 38px;
+  }
+
+  .hero-title {
+    font-size: 2rem;
+  }
+
+  .section-title {
+    font-size: 1.65rem;
+  }
+
+  .bio-card,
+  .education-card,
+  .timeline-card,
+  .project-body {
+    padding: 1.25rem;
+  }
+
+  .honor-card {
+    padding: 1.5rem;
+  }
+
+  .resume-sheet {
+    padding: 1rem;
+  }
+
+  .resume-contact-line {
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+/* Resume print improvements */
+@media print {
+  @page {
+    size: A4;
+    margin: 12mm;
+  }
+
+  html,
+  body {
+    overflow: visible !important;
+    background: #fff !important;
+    color: #111827 !important;
+  }
+
+  .modal-overlay {
+    position: absolute !important;
+    inset: 0 auto auto 0;
+    width: 100% !important;
+    height: auto !important;
+    overflow: visible !important;
+  }
+
+  .modal-window {
+    max-height: none !important;
+    overflow: visible !important;
+  }
+
+  .modal-body {
+    overflow: visible !important;
+  }
+
+  .resume-sheet {
+    width: 100%;
+    box-shadow: none !important;
+    page-break-inside: auto;
+  }
+
+  .resume-item,
+  .resume-section {
+    break-inside: avoid;
+  }
+}
+
+/* Accessibility: reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
